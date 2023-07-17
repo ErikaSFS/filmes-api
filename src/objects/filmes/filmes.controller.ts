@@ -1,14 +1,12 @@
-
-
 import { FilmesService } from './filmes.service';
 import { Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
-import { Filmes } from './filme.schema';
+import { Filme } from './filmes.schema';
 
 
 
 @Controller('filmes')
 export class FilmesController {
-    constructor (private filmesService: filmesService) { }
+    constructor (private filmesService: FilmesService) { }
 
 @Get()
 async getAll() {
@@ -31,9 +29,10 @@ async updateFilme(
     @Param('id') id: string,
     @Body() filme: Filme,
     ) {
+    return await this.filmesService.update(id, filme);
+    }
 
-    } return await this.filmesService.update(id, filme);
-
+    
     @Delete('/delete/:id')
     async deleteFilme(@Param('id') id:string){
       await this.filmesService.delete(id);
