@@ -17,6 +17,7 @@ import { FilmesController} from './filmes.controller';
         ]),
     ],
     providers: [ FilmesService],
+    exports: [ FilmesService],
     controllers: [ FilmesController],
 })
 export class FilmesModule {}
